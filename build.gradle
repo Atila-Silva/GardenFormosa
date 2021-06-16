@@ -1,0 +1,51 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'br.com.garden'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.0'
+
+//implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+implementation 'org.springframework.boot:spring-boot-starter-web'
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+implementation 'com.h2database:h2'
+
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+//implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.5.0'
+
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+ //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.5.0'
+
+
+
+
+providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+testImplementation('org.springframework.boot:spring-boot-starter-test') {
+exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+}
+
+providedRuntime 'javax.servlet:jstl'
+providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+}
+
+test {
+	useJUnitPlatform()
+}
