@@ -96,11 +96,4 @@ public class PeopleModel implements Serializable {
 		this.idPeople = idPeople;
 	}
 
-	
-
-	
-	
-	
-
-
 }

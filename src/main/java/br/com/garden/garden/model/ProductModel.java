@@ -1,6 +1,7 @@
 package br.com.garden.garden.model;
-/**
-import java.util.Date;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +14,13 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "PRODUCT")
-public class ProductModel {
+public class ProductModel implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "ID_PRODUCT")
@@ -29,16 +35,16 @@ public class ProductModel {
 	private String detailProduct;
 	
 	@Column(name = "DATA_PRODUCT")
-	private Date date;
+	private LocalDateTime createDateProduct;
 	
 	public ProductModel() {	}
 
 	public ProductModel(@NotNull(message = "Nome obrigatório") String nomeProduct,
-			@NotNull(message = "Nome obrigatório") String detailProduct, Date date) {
+			@NotNull(message = "Nome obrigatório") String detailProduct, LocalDateTime createDateProduct) {
 		super();
 		this.nomeProduct = nomeProduct;
 		this.detailProduct = detailProduct;
-		this.date = date;
+		this.createDateProduct = createDateProduct;
 	}
 
 	public Long getIdProduct() {
@@ -67,15 +73,15 @@ public class ProductModel {
 		this.detailProduct = detailProduct;
 	}
 
-	public Date getDate() {
-		return date;
+	public LocalDateTime getCreateDateProduct() {
+		return createDateProduct;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCreateDateProduct(LocalDateTime createDateProduct) {
+		this.createDateProduct = createDateProduct;
 	}
 
 	
 
 }
-*/
+
