@@ -1,26 +1,31 @@
 package br.com.garden.garden.model;
-/**
-import java.util.Date;
-import java.util.List;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "Order1")
 public class OrderModel {
 	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "ID_ORDER")
-	private Long idProduct;
-	
+	@Column(name = "ID_ORDER1")
+	private Long idOrder;
+	/**
 	private List<ProductModel> product;
 	
 	@Column(name = "ID_CLIENT")
@@ -30,89 +35,59 @@ public class OrderModel {
 	@Column(name = "NOME_PRODUCT")
 	@NotNull(message = "Nome obrigatório")
 	private int idClerk;
+	*/
 	
 	@Column(name = "DATA_PRODUCT")
-	private Date date;
+	private LocalDateTime createDateOrder;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "LISTA_PRODUCT",
+	joinColumns = { @JoinColumn(name = "ORDER1_ID")},
+	inverseJoinColumns = { @JoinColumn(name = "PRODUCT_ID")})
+	private Set<ProductModel> productOrder = new HashSet<ProductModel>();
 	
 	public OrderModel() {	}
 
-	
 
-	public OrderModel(List<ProductModel> product, @NotNull(message = "Nome obrigatório") int idClient,
-			@NotNull(message = "Nome obrigatório") int idClerk, Date date) {
+	public OrderModel(LocalDateTime createDateOrder, Set<ProductModel> productOrder) {
 		super();
-		this.product = product;
-		this.idClient = idClient;
-		this.idClerk = idClerk;
-		this.date = date;
+		this.createDateOrder = createDateOrder;
+		this.productOrder = productOrder;
 	}
-
 
 
 	public Long getIdProduct() {
-		return idProduct;
+		return idOrder;
 	}
 
 
 
-	public void setIdProduct(Long idProduct) {
-		this.idProduct = idProduct;
+	public void setIdProduct(Long idOrder) {
+		this.idOrder = idOrder;
 	}
 
 
-	
-	public List<ProductModel> getProduct() {
-		return product;
+	public LocalDateTime getCreateDateOrder() {
+		return createDateOrder;
 	}
 
 
-
-	public void setProduct(List<ProductModel> product) {
-		this.product = product;
+	public void setCreateDateOrder(LocalDateTime createDateOrder) {
+		this.createDateOrder = createDateOrder;
 	}
 
 
-
-	public int getIdClient() {
-		return idClient;
+	public Set<ProductModel> getProductOrder() {
+		return productOrder;
 	}
 
 
-
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public void setProductOrder(Set<ProductModel> productOrder) {
+		this.productOrder = productOrder;
 	}
-
-
-
-	public int getIdClerk() {
-		return idClerk;
-	}
-
-
-
-	public void setIdClerk(int idClerk) {
-		this.idClerk = idClerk;
-	}
-
-
-
-	public Date getDate() {
-		return date;
-	}
-
-
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-
-
-	
 
 	
 	
 
 }
-*/
+
